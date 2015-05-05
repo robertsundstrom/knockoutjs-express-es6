@@ -17,7 +17,7 @@
   },
   "jspm": {
     "directories": {
-      "baseURL": "public"
+      "baseURL": "wwwroot"
     },
     "dependencies": {
       "core-js": "npm:core-js@^0.9.6",
