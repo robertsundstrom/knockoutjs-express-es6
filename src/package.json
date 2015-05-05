@@ -23,6 +23,7 @@
       "core-js": "npm:core-js@^0.9.6",
       "crossroads": "npm:crossroads@^0.12.0",
       "font-awesome": "npm:font-awesome@^4.3.0",
+      "hasher": "npm:hasher@1.2.0",
       "jquery": "npm:jquery@^2.1.4",
       "knockout": "npm:knockout@^3.3.0",
       "knockout-es5": "npm:knockout-es5@^0.2.0-alpha",
