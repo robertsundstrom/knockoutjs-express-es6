@@ -8,3 +8,17 @@ Includes a custom ES6 component loader for KnockoutJS.
 ZURB Foundation 5 is used as frontend framework.
 
 The SPA structures is mainly based on that introduced in this blog: https://sumitmaitra.wordpress.com/2014/08/04/part-3-ko-components-routes-and-hashes/
+
+## Install ##
+
+1. Run npm install
+2. Run jspm install
+3. Run with ExpressJS
+
+Linux:
+
+    DEBUG=myapp npm start
+    
+Windows:
+  
+    set DEBUG=myapp & npm start
