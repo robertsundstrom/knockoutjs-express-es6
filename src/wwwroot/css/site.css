@@ -1,0 +1,21 @@
+body {
+	
+}
+
+.off-canvas-wrap, .off-canvas-wrap > .inner-wrap {
+  min-height: 100vh;
+}
+
+#splash {
+	margin: 0 auto; 
+	width: 60px; 
+	height: 250px;
+}
+
+#splash i {
+	margin-top: 100px;
+}
+
+#content {
+	padding-top: 20px;	
+}
