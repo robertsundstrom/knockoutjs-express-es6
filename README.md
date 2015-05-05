@@ -3,6 +3,8 @@ Sample demonstrating how to implement a Single-Page Application (SPA) with the M
 
 The project is using SystemJS (module loading), BabelJS (for ECMAScript 6), and JSPM (for package management) on the frontend (under "wwwroot").
 
+Includes a custom ES6 component loader for KnockoutJS.
+
 ZURB Foundation 5 is used as frontend framework.
 
 The SPA structures is mainly based on that introduced in this blog: https://sumitmaitra.wordpress.com/2014/08/04/part-3-ko-components-routes-and-hashes/
