@@ -1,6 +1,6 @@
 import ko from "knockout";
 import $ from "jquery";
-import testTemplate from "./test.html!text";
+import testTemplate from "./greeter.html!text";
 
 class testViewModel {
 	constructor(params) {		

@@ -8,8 +8,8 @@ builder.loadConfig('./config.js').then(function () {
 		transpiler: 'babel'
 	});
 	
-	return builder.build('app/app + pages/**/* + components/**/*', 'site.js', {minify: false, sourceMaps: true})
-	//return builder.buildSFX('app/app', 'dist/site.js', {minify: false, sourceMaps: true});
+	return builder.build('app/app + components/**/* + modules/**/* + pages/**/*', 'js/site.js', { minify: false, sourceMaps: true })
+	//return builder.buildSFX('app/app', 'js/site.js', { minify: false, sourceMaps: true });
 
 }).then(function () {
 	console.log('Build complete');
