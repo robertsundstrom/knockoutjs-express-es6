@@ -1,6 +1,19 @@
 # knockoutjs-express-es6
 Sample demonstrating how to implement a Single-Page Application (SPA) with the MVVM pattern using KnockoutJS, Express.js and ECMAScript 6.
 
+## Main features ##
+
+* Single-Page Application (SPA)
+* ECMAScript 6 (ES6)
+* Knockout-ES5 for ES5 properties. 
+* Custom binding provider (for ko-* attributes).
+* ES6 component loader (SystemJS)
+* Uses JSPM
+* Based on ZURB Foundation
+* ExpressJS
+
+## Details ##
+
 The project is using SystemJS (module loading), BabelJS (for ECMAScript 6), and JSPM (for package management) on the frontend (under "wwwroot").
 
 Includes a custom ES6 component loader for KnockoutJS.
