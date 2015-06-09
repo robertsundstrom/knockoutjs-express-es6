@@ -4,7 +4,7 @@ import testTemplate from "./greeter.html!text";
 
 class testViewModel {
 	constructor(params) {		
-		this.name = ko.observable(params);
+		this.name = params.name;
 	}
 }
 

@@ -31,7 +31,7 @@ System.config({
     "hasher": "npm:hasher@1.2.0",
     "jquery": "npm:jquery@2.1.4",
     "knockout": "npm:knockout@3.3.0",
-    "knockout-es5": "npm:knockout-es5@0.2.0-alpha",
+    "knockout-es5": "npm:knockout-es5@0.1.1",
     "knockout.validation": "npm:knockout.validation@2.0.3",
     "systemjs/plugin-css": "github:systemjs/plugin-css@0.1.10",
     "systemjs/plugin-image": "github:systemjs/plugin-image@0.1.0",
@@ -149,7 +149,7 @@ System.config({
     "npm:jquery@2.1.4": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:knockout-es5@0.2.0-alpha": {
+    "npm:knockout-es5@0.1.1": {
       "knockout": "npm:knockout@3.3.0",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "weakmap": "npm:weakmap@0.0.6"

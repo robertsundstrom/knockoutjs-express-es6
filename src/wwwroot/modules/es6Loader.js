@@ -1,7 +1,7 @@
 import ko from "knockout";
 
-class ES6ComponentLoader {
-
+class ES6Loader {
+	
 	loadComponent(name, componentConfig, callback) {
 		this.loadComponent2(name, componentConfig, callback);
 	}
@@ -17,11 +17,14 @@ class ES6ComponentLoader {
 							viewModel: module.default.viewModel,		
 							createViewModel: (params, componentInfo) => {
 								var viewModel = module.default.viewModel;					
+								let o = null;		
 								if(typeof viewModel === "function") {
-									return new viewModel(params);
+									o = new viewModel(params);
 								} else {
-									return viewModel;
+									o = viewModel;
 								}
+								ko.track(o);
+								return o;
 							}
 						});				
 					} catch (error) {
@@ -39,12 +42,15 @@ class ES6ComponentLoader {
 							var module = await System.import(componentConfig.viewModel.require);
 							obj.viewModel = module.default,
 							obj.createViewModel = (params, componentInfo) => {
-								var viewModel = module.default;					
+								var viewModel = module.default;	
+								let o = null;		
 								if(typeof viewModel === "function") {
-									return new viewModel(params);
+									o = new viewModel(params);
 								} else {
-									return viewModel;
+									o = viewModel;
 								}
+								ko.track(o);	
+								return o;
 							}
 						}
 						callback(obj);				
@@ -73,4 +79,4 @@ class ES6ComponentLoader {
 	}
 }
 
-export default new ES6ComponentLoader();
+export default new ES6Loader();

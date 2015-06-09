@@ -1,5 +1,5 @@
 import ko from "knockout";
-import es6Loader from 'modules/es6ComponentLoader';
+import es6Loader from 'modules/es6Loader';
 
 ko.components.loaders.unshift(es6Loader);
 
@@ -28,5 +28,5 @@ ko.components.register('about', {
 /* Components */
 
 ko.components.register('greeter', {
-		require: 'component/greeter/greeter'
+		require: 'components/greeter/greeter'
 });
