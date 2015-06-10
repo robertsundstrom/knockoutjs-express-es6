@@ -35,3 +35,16 @@ Linux:
 Windows:
   
     set DEBUG=myapp & npm start
+    
+
+Open browser and navigate to: http://localhost:3000/    
+
+    
+*Note:* You can just run the batch-files.
+
+## Bundling ##
+
+How to pack all dependencies into one precompiled bundle targeting ES5 (a.k.a. "the JavaScript of today") and SystemJS.
+
+    cd wwwroot
+    node builder.js
