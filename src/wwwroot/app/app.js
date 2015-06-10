@@ -9,6 +9,14 @@ import customBindingProvider from "modules/customBindingProvider";
 import components from "./components";
 import Main from "./main";
 
+router.config({
+	routes: [
+		{url: '', params: {page: 'home'}},
+		{url: 'about', params: {page: 'about'}},
+		{url: 'foo', params: {page: 'foo'}},
+	]
+});
+
 ko.bindingProvider.instance = new customBindingProvider();
 
 ko.track(Main);

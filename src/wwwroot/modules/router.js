@@ -18,23 +18,8 @@ import hasher from "hasher";
 //    change(e.originalEvent.state);
 //})
 
-function Router(config) {
-	var currentRoute = this.currentRoute = ko.observable({});
-
-	ko.utils.arrayForEach(config.routes, function (route)
-	{
-		crossroads.addRoute(route.url, function (requestParams)
-		{
-			currentRoute(ko.utils.extend(requestParams, route.params));
-		});
-	});
-	//crossroads.routed.add(console.log, console);
-	activateCrossroads();
-}
-
 function activateCrossroads() {
-	function parseHash(newHash, oldHash)
-	{
+	function parseHash(newHash, oldHash) {
 		//if (newHash == "")
 		//{
 		//    if(location.pathname != "/" && location.pathname.length > 1)
@@ -60,12 +45,22 @@ function activateCrossroads() {
 	hasher.initialized.add(parseHash);
 	hasher.changed.add(changeHash);
 	hasher.init();
-} 
+}
 
-export default new Router({
-	routes: [
-		{url: '', params: {page: 'home'}},
-		{url: 'about', params: {page: 'about'}},
-		{url: 'foo', params: {page: 'foo'}},
-	]
-});
+class Router {
+	constructor() {
+		this.currentRoute = this.currentRoute = ko.observable({});
+	}
+
+	config(config) {
+		ko.utils.arrayForEach(config.routes,(route) => {
+			crossroads.addRoute(route.url,(requestParams) => {
+				this.currentRoute(ko.utils.extend(requestParams, route.params));
+			});
+		});
+		//crossroads.routed.add(console.log, console);
+		activateCrossroads();
+	}
+}
+
+export default new Router();

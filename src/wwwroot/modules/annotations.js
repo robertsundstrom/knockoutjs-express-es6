@@ -1,16 +1,14 @@
-/*
 import ko from "knockout";
 
 import router from "modules/router";
-import components from "./components";
 
-export function Component(selector) {
-	return function decorator(target) {
-		ko.components.register(selector, {
+export function Component(options: { selector: string, template: string }) {
+	return (target) => {
+		ko.components.register(options.selector, {
 			template: {
-				require: 
+				require: options.template
 			},
-			viewModel: new target()
+			viewModel: new target({})
 		});
 	};
 }
@@ -18,4 +16,3 @@ export function Component(selector) {
 export function Route(route) {
 
 }
-*/
