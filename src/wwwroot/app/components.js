@@ -24,6 +24,14 @@ ko.components.register('about', {
 	}
 });
 
+ko.components.register('foo', {
+	template: {
+		require: 'pages/foo/foo.html!text'
+	},
+	viewModel: {
+		require: 'pages/foo/foo'
+	}
+});
 
 /* Components */
 

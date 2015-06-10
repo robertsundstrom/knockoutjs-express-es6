@@ -1,5 +1,6 @@
 System.config({
   "baseURL": "/",
+  "defaultJSExtensions": true,
   "transpiler": "babel",
   "babelOptions": {
     "stage": 0,
@@ -8,14 +9,13 @@ System.config({
     ]
   },
   "paths": {
-    "*": "*.js",
-    "github:*": "jspm_packages/github/*.js",
-    "npm:*": "jspm_packages/npm/*.js",
-    "text": "jspm_packages/github/systemjs/plugin-text@0.0.2.js",
-    "css": "jspm_packages/github/systemjs/plugin-css@0.1.10.js",
-    "knockout-projections": "./js/knockout/knockout-projections.min.js",
+    "github:*": "jspm_packages/github/*",
+    "npm:*": "jspm_packages/npm/*",
+    "text.js": "jspm_packages/github/systemjs/plugin-text@0.0.2.js",
+    "css.js": "jspm_packages/github/systemjs/plugin-css@0.1.10.js",
+    "knockout-projections.js": "./js/knockout/knockout-projections.min.js",
     "modules": "modules",
-    "utils": "../modules/utils.js",
+    "utils.js": "../modules/utils.js",
     "services": "services",
     "components": "components"
   }
@@ -23,9 +23,9 @@ System.config({
 
 System.config({
   "map": {
-    "babel": "npm:babel-core@5.2.6",
-    "babel-runtime": "npm:babel-runtime@5.2.6",
-    "core-js": "npm:core-js@0.9.6",
+    "babel": "npm:babel-core@5.5.6",
+    "babel-runtime": "npm:babel-runtime@5.5.6",
+    "core-js": "npm:core-js@0.9.15",
     "crossroads": "npm:crossroads@0.12.0",
     "font-awesome": "npm:font-awesome@4.3.0",
     "hasher": "npm:hasher@1.2.0",
@@ -89,6 +89,9 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
+    "npm:babel-runtime@5.5.6": {
+      "process": "github:jspm/nodelibs-process@0.1.1"
+    },
     "npm:buffer@3.2.1": {
       "base64-js": "npm:base64-js@0.0.8",
       "ieee754": "npm:ieee754@1.1.4",
@@ -113,11 +116,10 @@ System.config({
       "path": "github:jspm/nodelibs-path@0.1.0",
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
-    "npm:core-js@0.8.4": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
-    },
-    "npm:core-js@0.9.6": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
+    "npm:core-js@0.9.15": {
+      "fs": "github:jspm/nodelibs-fs@0.1.2",
+      "process": "github:jspm/nodelibs-process@0.1.1",
+      "systemjs-json": "github:systemjs/plugin-json@0.1.0"
     },
     "npm:core-util-is@1.0.1": {
       "buffer": "github:jspm/nodelibs-buffer@0.1.0"
@@ -142,9 +144,6 @@ System.config({
     },
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
-    },
-    "npm:jquery@2.1.3": {
-      "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:jquery@2.1.4": {
       "process": "github:jspm/nodelibs-process@0.1.1"
@@ -177,10 +176,8 @@ System.config({
       "inherits": "npm:inherits@2.0.1",
       "isarray": "npm:isarray@0.0.1",
       "process": "github:jspm/nodelibs-process@0.1.1",
-      "stream": "github:jspm/nodelibs-stream@0.1.0",
       "stream-browserify": "npm:stream-browserify@1.0.0",
-      "string_decoder": "npm:string_decoder@0.10.31",
-      "util": "github:jspm/nodelibs-util@0.1.0"
+      "string_decoder": "npm:string_decoder@0.10.31"
     },
     "npm:source-map@0.1.43": {
       "amdefine": "npm:amdefine@0.1.0",

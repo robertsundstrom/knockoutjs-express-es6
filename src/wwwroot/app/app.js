@@ -1,7 +1,7 @@
 import $ from "jquery";
 import ko from "knockout";
 import"knockout-es5";
-import projections from "knockout-projections";
+import projections from "js/knockout/knockout-projections.min.js";
 
 import router from "modules/router";
 import customBindingProvider from "modules/customBindingProvider";

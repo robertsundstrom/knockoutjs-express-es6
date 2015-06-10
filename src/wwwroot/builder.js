@@ -2,9 +2,9 @@ var path = require("path");
 var Builder = require('systemjs-builder');
 
 var builder = new Builder({});
-builder.loadConfig('./config.js').then(function () {
+builder.loadConfig('config.js').then(function () {
 	builder.config({ 
-		baseURL: 'file:' + process.cwd(), 
+		//baseURL: 'file:' + process.cwd(), 
 		transpiler: 'babel'
 	});
 	

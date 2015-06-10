@@ -66,5 +66,6 @@ export default new Router({
 	routes: [
 		{url: '', params: {page: 'home'}},
 		{url: 'about', params: {page: 'about'}},
+		{url: 'foo', params: {page: 'foo'}},
 	]
 });
