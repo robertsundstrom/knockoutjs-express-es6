@@ -5,12 +5,12 @@ Sample demonstrating how to implement a Single-Page Application (SPA) with the M
 
 * Single-Page Application (SPA)
 * ECMAScript 6 (ES6)
-* Knockout-ES5 for ES5 properties. 
+* Knockout-ES5 (for binding to ES5 properties). 
 * Custom binding provider (for ko-* attributes).
 * ES6 component loader (SystemJS)
 * Uses JSPM
-* Based on ZURB Foundation
-* ExpressJS
+* Based on ZURB Foundation 5
+* ExpressJS server
 
 ## Details ##
 
