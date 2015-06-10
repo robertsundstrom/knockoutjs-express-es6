@@ -48,3 +48,7 @@ How to pack all dependencies into one precompiled bundle targeting ES5 (a.k.a. "
 
     cd wwwroot
     node builder.js
+    
+All ES6 code and templates get compiled and all referenced dependencies like jQuery get imported, and stripped of unecessary code.
+
+Just add a reference to the output file in index.html. This one will be loaded instead of the raw files (uncompiled) existing on server.
