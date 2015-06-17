@@ -4,7 +4,8 @@ Sample demonstrating how to implement a Single-Page Application (SPA) with the M
 ## Main features ##
 
 * Single-Page Application (SPA)
-* ECMAScript 6 (ES6)
+* ECMAScript 6 (ES6) (with BabelJS)
+* KnockoutJS for MVVM
 * Knockout-ES5 (for binding to ES5 properties). 
 * Custom binding provider (for ko-* attributes).
 * ES6 component loader (SystemJS)
