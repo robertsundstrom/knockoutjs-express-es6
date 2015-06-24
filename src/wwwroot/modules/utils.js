@@ -59,57 +59,6 @@ Array.prototype.shuffle = function() {
     return o;
 };
 
-Array.prototype.firstOrDefault = function (predicate) {
-	if(predicate === undefined) {
-		return this[0];
-	}
-	if(predicate === null) {
-		throw "Predicate is missing.";
-	}
-	var source = this;
-	var match = null;
-	source.forEach(function(item) {
-		if(predicate(item)) {
-			match = item;
-			return;
-		}	
-	});
-	return match;
-};
-
-Array.prototype.first = function (predicate) {
-	var result = this.firstOrDefault(predicate);
-	if(result === null) { 
-		if(predicate === undefined)
-			throw "No items.";
-		else 
-			throw "No match.";
-	}
-	return result;
-};
-
-Array.prototype.any = function (predicate) {
-	if(predicate === undefined || predicate === null) {
-		throw "Predicate is missing.";
-	}
-	return this.first(predicate) !== null;
-};
-
-Array.prototype.where = function (predicate) {
-	if(predicate === undefined || predicate === null) {
-		throw "Predicate is missing.";
-	}
-	var source = this;
-	var target = [];
-		source.forEach(function(item) {
-		if(predicate(item)) {
-			target.push(item);
-			return;
-		}	
-	});
-	return target;
-};
-
 var timeModifier = 0;
 
 Date.prototype.getUnixTime = function(apply_modifier) {
@@ -159,4 +108,19 @@ export function delay(ms) {
 export function isConstructor(func) {
 	if(func.constructor == Function) return true;
 	return false;
+}
+
+export function serialize(obj) {
+	var str = "";
+	var names = Object.getOwnPropertyNames(obj);
+	var length = names.length;
+	for(let i = 0; i < length; i++) {
+		var prop = names[i];
+		var value = obj[prop];
+		str += `\'${prop}\': ${value}`;
+		if(i < (length - 1)) {
+			str += ", ";
+		}
+	}
+	return `{${str}}`;
 }

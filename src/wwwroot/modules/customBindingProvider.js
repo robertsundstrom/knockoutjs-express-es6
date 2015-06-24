@@ -1,27 +1,6 @@
 import ko from "knockout";
-
-Array.prototype.first = function (predicate) {
-    this.forEach((item) => {
-        if (predicate(item)) {
-            return item;
-        }
-    });
-    return null;
-}
-
-Array.prototype.any = function (predicate) {
-    return this.first(predicate) != null;
-}
-
-Array.prototype.where = function (predicate) {
-    var result = [];
-    this.forEach((item) => {
-        if (predicate(item)) {
-            result.push(item);
-        }
-    });
-    return result;
-}
+import { serialize } from "modules/utils";
+import { Iterable } from "modules/linq";
 
 
 function createBindingsStringEvaluatorViaCache(bindingsString, cache, options) {
@@ -41,6 +20,10 @@ function createBindingsStringEvaluator(bindingsString, options) {
 
 //You can now create a bindingProvider that uses something different than data-bind attributes
 export default function CustomBindingProvider() {
+
+    this.initialize = function () {
+        
+    };
 
     this.bindingCache = {};
 
@@ -67,7 +50,7 @@ export default function CustomBindingProvider() {
         var matches = null;
         if (typeof node.attributes !== "undefined") {
             var attributes = Array.prototype.slice.call(node.attributes);
-            matches = attributes.where((item) => item.name.indexOf("ko-") === 0);
+            matches = Array.from(attributes.where((item) => item.name.indexOf("ko-") === 0));
         }
         return node.getAttribute ? matches : false;
     };
@@ -77,7 +60,7 @@ export default function CustomBindingProvider() {
         var result = {};
         if (typeof node.attributes !== "undefined") {
             var attributes = Array.prototype.slice.call(node.attributes);
-            var matches = attributes.where((item) => item.name.indexOf("ko-") === 0);
+            var matches = Array.from(attributes.where((item) => item.name.indexOf("ko-") === 0));
             if (matches.length > 0) {
                 for (var elem of matches) {                  
                     var bindingName = elem.name.replace("ko-", "");
@@ -102,6 +85,68 @@ export default function CustomBindingProvider() {
         }
         return ko.components.addBindingsForCustomElement(result, node, bindingContext, /* valueAccessors */ false)
     };
+
+    this.preprocessNode = function (node: Element) {
+        if (node.nodeType == 3) {
+            if ("nodeValue" in node && node.nodeValue !== null) {          
+                        
+                var value = node.nodeValue;
+                var match = value.match(/\${([^}]*)}/);
+                if (!match) {
+                    match = value.match(/{{([^}]*)}/);
+                }
+                if (match) {
+                    value = match[1];
+                    var newNode = document.createElement("span");
+                    newNode.setAttribute("ko-text", value);
+                    node.parentNode.replaceChild(newNode, node);
+                    return [node, newNode];
+                }
+            }
+            return;
+        } else if (node.nodeType == 1) {
+            var attrs = {};
+            var attributes = Array.prototype.slice.call(node.attributes);
+            for (let attribute of attributes) {
+                var localName = attribute.localName;
+                var value = attribute.value;
+                var match = value.match(/\${([^}]*)}/);
+                if(!match) {
+                match = value.match(/{{([^}]*)}/);
+            }
+            if (match) {
+                console.log(match);
+                var value = match[1];
+                attrs[localName] = value;
+                console.log(localName);
+                node.removeAttribute(localName);
+            }
+        }
+        if (Object.getOwnPropertyNames(attrs).length > 0) {
+            node.setAttribute("ko-attr", serialize(attrs));
+            return [node];
+        }
+    }
+    /*
+    if (node.nodeType == 8) {
+        var match = node.nodeValue.match(/{(.*?)}/);
+        if (match) {
+            console.log(node);
+            
+            return;
+            
+            // Create a pair of comments to replace the single comment
+            var c1 = document.createComment("ko " + match[1]),
+                c2 = document.createComment("/ko");
+            node.parentNode.insertBefore(c1, node);
+            node.parentNode.replaceChild(c2, node);
+ 
+            // Tell Knockout about the new nodes so that it can apply bindings to them
+            return [c1, c2];
+        }
+    }
+    */
+}
     
     /*
     
