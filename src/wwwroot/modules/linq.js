@@ -1,4 +1,12 @@
-export class Iterable {
+export default class Iterable {
+	select(expr) {
+		return new SelectIterable(this, expr);
+	}
+
+	selectMany(expr) {
+		return new SelectManyIterable(this, expr);
+	}
+
 	take(limit) {
 		return new TakeIterable(this, limit);
 	}
@@ -17,12 +25,12 @@ export class Iterable {
 		var source = this;
 		var match = null;
 		for (let item of source) {
-			if(predicate(item)) {
+			if (predicate(item)) {
 				return item;
 			}
 		}
 	}
-		
+
 	first(predicate) {
 		var result = this.firstOrDefault(predicate);
 		if (result === null) {
@@ -33,14 +41,14 @@ export class Iterable {
 		}
 		return result;
 	}
-	
+
 	any(predicate) {
 		if (predicate === undefined || predicate === null) {
 			throw "Predicate is missing.";
 		}
 		return this.first(predicate) !== null;
 	};
-	
+
 	where(predicate) {
 		return new WhereIterable(this, predicate);
 	}
@@ -67,6 +75,46 @@ export class Iterable {
 	}
 }
 
+export class SelectIterable extends Iterable {
+	constructor(source, expr) {
+		super();
+
+		this.source = source;
+		this.expr = expr;
+	}
+	
+	*[Symbol.iterator]() {
+		if (expr === undefined || expr === null) {
+			throw "Expression is missing.";
+		}
+		for (let item of this.source) {
+			yield this.expr(item);
+		}		
+	}
+}
+
+
+export class SelectManyIterable extends Iterable {
+	constructor(source, expr) {
+		super();
+
+		this.source = source;
+		this.expr = expr;
+	}
+	
+	*[Symbol.iterator]() {
+		if (this.expr === undefined || this.expr === null) {
+			throw "Expression is missing.";
+		}
+		for (let item of this.source) {
+			let items = this.expr(item);
+			for (let item2 of items) {
+				yield item2;
+			}
+		}
+	}
+}
+
 export class TakeIterable extends Iterable {
 	constructor(source, limit) {
 		super();
@@ -79,9 +127,8 @@ export class TakeIterable extends Iterable {
 		if (this.limit === undefined || !(this.limit instanceof Number)) {
 			throw "Expected limit.";
 		}
-		var source = this;
 		for (let i = 0; i < limit; i++) {
-			yield source[i];
+			yield this.source[i];
 		}
 	}
 }
@@ -98,10 +145,9 @@ export class SkipIterable extends Iterable {
 		if (this.limit === undefined || !(this.limit instanceof Number)) {
 			throw "Expected limit.";
 		}
-		var source = this;
 		var i = 0;
-		for (let item of source) {
-			if(i > limit) {
+		for (let item of this.source) {
+			if (i > limit) {
 				yield item;
 			}
 			i++;
@@ -136,3 +182,30 @@ Array.prototype.first = Iterable.prototype.first;
 Array.prototype.firstOrDefault = Iterable.prototype.firstOrDefault;
 Array.prototype.where = Iterable.prototype.where;
 Array.prototype.groupBy = Iterable.prototype.groupBy;
+Array.prototype.select = Iterable.prototype.select;
+Array.prototype.selectMany = Iterable.prototype.selectMany;
+
+export class ObjectHelpers {
+	static *explode(source) {
+		for (let prop in source) {
+			yield source[prop];
+		}
+	}
+
+	static groupBy(source, expr) {
+		if (expr === undefined || expr === null) {
+			throw "Expression is missing.";
+		}
+		var target = {};
+		source.forEach((prop) => {
+			var item = this[prop];
+			var value = expr(item);
+			if (!(value in target)) {
+				target[value] = [];
+			}
+			var items = target[value];
+			items.push(item);
+		});
+		return target;
+	}
+}

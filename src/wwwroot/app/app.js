@@ -17,7 +17,7 @@ router.config({
 	]
 });
 
-ko.bindingProvider.instance = new customBindingProvider();
+ko.bindingProvider.instance = new customBindingProvider().initialize();
 
 ko.track(Main);
 ko.applyBindings(Main);
