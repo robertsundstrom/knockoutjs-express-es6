@@ -23,6 +23,38 @@ ZURB Foundation 5 is used as frontend framework.
 
 The SPA structures is mainly based on that introduced in this blog: https://sumitmaitra.wordpress.com/2014/08/04/part-3-ko-components-routes-and-hashes/
 
+### ECMA Script 6 ###
+
+Using BabelJS to compile ES6 features (and some proposed for ES7) to plain ES5 that can be executed in todays browsers.
+
+* **ES6:** Classes, String interpolation and more.
+
+* **ES7:** Async-Await and Decorators.
+
+*This is mostly compatible with TypeScript as well.*
+
+### SystemJS ###
+
+Using the SystemJS and JSPM systems to handle ES6 modules.
+
+Compiling all files into a bundle with SystenJS Builder.
+
+### Binding provider ###
+
+#### Binding attributes (ko-*) ####
+
+Introducing ko-prefixed binding:
+
+    <h2 ko-text="name"></h2>
+
+#### String interpolation ####
+
+The string interpolation syntax is borrowed from the ES6 specification.
+
+    <h2>${user.name}</h2>
+
+*Note:* Does not yet support multiple such in a text node.
+
 ## Install ##
 
 1. Run npm install
