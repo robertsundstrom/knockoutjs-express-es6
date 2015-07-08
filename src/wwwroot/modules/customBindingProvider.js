@@ -106,11 +106,9 @@ export default class CustomBindingProvider {
 
                         var binding = ko.bindingHandlers[bindingName];
                         if (binding !== undefined) {
-                            // var val = bindingContext.$data[elem.value];
                             if (parsedBindings === undefined) {
                                 result[bindingName] = val;
                             } else {
-                                //result[bindingName] = eval(elem.value);
                                 result[bindingName] = parsedBindings[bindingName];
                             }
                         } else {
@@ -175,21 +173,6 @@ export default class CustomBindingProvider {
                     parentNode.removeChild(node);
                     return nodes;
                 }
-                
-                
-                /*
-                if (match !== null && match.length > 0) {
-                    for(let entry of match) {
-                        var offset = node.nodeValue.indexOf(entry[0]);
-                        node = node.splitText(offset);
-                        var newNode = document.createElement("span");
-                        newNode.setAttribute("ko-text", entry[1]);
-                        node.parentNode.appendChild(newNode);
-                    }
-                    return [node.parentNode, node.parentNode]; //[node, newNode];
-                }
-                */
-
             }
             return;
         } else if (node.nodeType == 1) {
