@@ -1,10 +1,12 @@
 <div class="large-9 columns">
 	<div class="row">
-		<div class="large-3 columns">
+		<div class="large-9 columns">
 			<h2> ${ title } (${ text })</h2>
 			<span ko-text="text" ko-style="{ 'color': counter > 2 ? 'red' : 'blue' }"></span>
 			<button ko-click="click" ko-text="text" class="${ 'btn btn' + '-success' }"></button>
 			<greeter params="name: text"></greeter>
+			<input type="test" ko-value="text" />
+			<p data-bind="visible: text.isValid"></p
 		</div>
 	</div>
 </div>

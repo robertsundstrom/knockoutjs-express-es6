@@ -16,4 +16,4 @@ export default class TestViewModel {
 		this.counter++;
 		this.text = `Count: ${this.counter}`;
 	}
-}
+} 

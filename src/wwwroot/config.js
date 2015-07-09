@@ -23,8 +23,9 @@ System.config({
 
 System.config({
   "map": {
-    "babel": "npm:babel-core@5.5.8",
-    "babel-runtime": "npm:babel-runtime@5.5.8",
+    "SteveSanderson/knockout-es5": "github:SteveSanderson/knockout-es5@0.2.1",
+    "babel": "npm:babel-core@5.6.15",
+    "babel-runtime": "npm:babel-runtime@5.6.15",
     "core-js": "npm:core-js@0.9.18",
     "crossroads": "npm:crossroads@0.12.0",
     "font-awesome": "npm:font-awesome@4.3.0",
@@ -89,7 +90,7 @@ System.config({
     "npm:assert@1.3.0": {
       "util": "npm:util@0.10.3"
     },
-    "npm:babel-runtime@5.5.8": {
+    "npm:babel-runtime@5.6.15": {
       "process": "github:jspm/nodelibs-process@0.1.1"
     },
     "npm:buffer@3.2.1": {

@@ -27,6 +27,28 @@ export default class CustomBindingProvider {
 
     constructor() {
         this.defaultProvider = ko.bindingProvider.instance;
+        
+        var bindings = [];
+        var bindingHandlers = ko.bindingHandlers;
+        for (let bindingName in bindingHandlers) {
+            var binding = bindingHandlers[bindingName];
+            binding.prefix = "ko";
+            binding.name = bindingName;
+            binding.getFullName = function() {
+                return `${this.prefix}-${this.name}`;
+            };
+            bindings.push(binding);
+        }
+
+        this.bindingCache2 = bindings.groupBy(b => b.prefix);
+
+        /*
+        for (let f of this.bindingCache2["ko"]) {
+            if ("prefix" in f) {
+                console.log(f.getFullName());
+            }
+        }
+        */
     }
 
     getBindingsString(node, bindingContext) {
@@ -47,28 +69,9 @@ export default class CustomBindingProvider {
         }
     }
 
-    initialize() {
-        var bindings = [];
-        var bindingHandlers = ko.bindingHandlers;
-        for (let bindingName in bindingHandlers) {
-            var binding = bindingHandlers[bindingName];
-            binding.prefix = "ko";
-            binding.name = bindingName;
-            binding.getFullName = function() {
-                return `${this.prefix}-${this.name}`;
-            };
-            bindings.push(binding);
-        }
-
-        this.bindingCache2 = bindings.groupBy(b => b.prefix);
-
-        for (let f of this.bindingCache2["ko"]) {
-            if ("prefix" in f) {
-                console.log(f.getFullName());
-            }
-        }
-
-        return this;
+    addBinding(ns, name, obj) {
+        obj["prefix"] = ns;
+        bindingHandlers[name] = obj;
     }
 
     nodeHasBindings(node: Element) {
@@ -187,10 +190,10 @@ export default class CustomBindingProvider {
                 }
                 if (match !== null && match.length > 0) {
                     match = match[0];
-                    console.log(match);
+                    //console.log(match);
                     var value = match[1];
                     attrs[localName] = value;
-                    console.log(localName);
+                    //console.log(localName);
                     node.removeAttribute(localName);
                 }
             }

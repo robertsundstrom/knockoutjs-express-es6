@@ -1,10 +1,11 @@
 import $ from "jquery";
 import ko from "knockout";
-import"knockout-es5";
+import"SteveSanderson/knockout-es5";
 import projections from "js/knockout/knockout-projections.min.js";
+import "knockout.validation";
 
 import router from "modules/router";
-import customBindingProvider from "modules/customBindingProvider";
+import CustomBindingProvider from "modules/customBindingProvider";
 
 import components from "./components";
 import Main from "./main";
@@ -17,7 +18,9 @@ router.config({
 	]
 });
 
-ko.bindingProvider.instance = new customBindingProvider().initialize();
+import "modules/validation";
+
+ko.bindingProvider.instance = new CustomBindingProvider();
 
 ko.track(Main);
 ko.applyBindings(Main);
